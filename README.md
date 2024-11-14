@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Sign-Up</title>
+    <title>GitHub Page</title>
     <style>
         body {
             display: flex;
@@ -18,20 +18,15 @@
         }
         h1 {
             font-size: 36px;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
-        #email-input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 250px;
-            margin-bottom: 20px;
-            background-color: #000;
-            color: #fff;
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        #sign-up-button {
-            padding: 10px 20px;
+        .button {
+            padding: 15px 25px;
             font-size: 16px;
             color: #000;
             background-color: #fff;
@@ -40,32 +35,58 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        #sign-up-button:hover {
+        .button:hover {
             background-color: #ccc;
         }
+        #email-input,
+        #about-us,
         #thank-you {
-            font-size: 24px;
             display: none;
             margin-top: 20px;
+            padding: 15px;
+            background-color: #222;
+            border-radius: 5px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Sign Up for Our Newsletter</h1>
-    <input type="email" id="email-input" placeholder="Enter your email" required>
-    <button id="sign-up-button">Sign Up</button>
-    <div id="thank-you">Thank you for signing up!</div>
+    <h1>GitHub Page</h1>
+    <div class="button-container">
+        <button id="newsletter-button" class="button">Sign Up for Newsletter</button>
+        <button id="about-us-button" class="button">About Us</button>
+        <button id="add-to-cart-button" class="button">Add to Cart</button>
+    </div>
+    <div id="email-input">
+        <input type="email" placeholder="Enter your email" required>
+        <button class="button">Submit</button>
+    </div>
+    <div id="about-us">We are Pesendary!</div>
+    <div id="thank-you">Thank you!</div>
 
     <script>
-        const signUpButton = document.getElementById('sign-up-button');
+        const newsletterButton = document.getElementById('newsletter-button');
+        const aboutUsButton = document.getElementById('about-us-button');
+        const addToCartButton = document.getElementById('add-to-cart-button');
+        const emailInputContainer = document.getElementById('email-input');
+        const aboutUsContainer = document.getElementById('about-us');
         const thankYouMessage = document.getElementById('thank-you');
 
-        signUpButton.addEventListener('click', () => {
-            const emailInput = document.getElementById('email-input');
-            if (emailInput.value.trim() !== '') {
-                emailInput.value = '';
-                thankYouMessage.style.display = 'block';
-            }
+        newsletterButton.addEventListener('click', () => {
+            emailInputContainer.style.display = 'block';
+        });
+
+        emailInputContainer.querySelector('button').addEventListener('click', () => {
+            emailInputContainer.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+        });
+
+        aboutUsButton.addEventListener('click', () => {
+            aboutUsContainer.style.display = 'block';
+        });
+
+        addToCartButton.addEventListener('click', () => {
+            thankYouMessage.style.display = 'block';
         });
     </script>
 </body>
