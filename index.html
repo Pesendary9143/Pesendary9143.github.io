@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +20,10 @@
             font-size: 36px;
             margin-bottom: 40px;
         }
+        .button-container {
+            display: flex; /* Arrange buttons in a row */
+            gap: 20px; /* Space between buttons */
+        }
         .button {
             padding: 15px 25px;
             font-size: 16px;
@@ -30,7 +33,6 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin: 10px;
         }
         .button:hover {
             background-color: #ccc;
@@ -39,11 +41,13 @@
 </head>
 <body>
     <h1>Welcome to Our Website</h1>
-    <button class="button" onclick="window.location.href='not_found.html'">Search</button>
-    <button class="button" onclick="document.getElementById('email-input').style.display='block';">Sign Up</button>
-    <button class="button" onclick="window.location.href='about_us.html'">About Us</button>
-    <button class="button" onclick="window.location.href='browse.html'">Browse</button>
-    <button class="button" onclick="window.location.href='customer_service.html'">Customer Service Number</button>
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='not_found.html'">Search</button>
+        <button class="button" onclick="document.getElementById('email-input').style.display='block';">Sign Up</button>
+        <button class="button" onclick="window.location.href='about_us.html'">About Us</button>
+        <button class="button" onclick="window.location.href='browse.html'">Browse</button>
+        <button class="button" onclick="window.location.href='customer_service.html'">Customer Service Number</button>
+    </div>
 
     <div id="email-input" style="display:none; margin-top: 20px;">
         <input type="email" placeholder="Enter your email" required>
