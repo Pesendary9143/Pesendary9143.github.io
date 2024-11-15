@@ -10,7 +10,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Sign-Up</title>
+    <title>Main Page</title>
     <style>
         body {
             display: flex;
@@ -24,20 +24,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: #fff;
         }
         h1 {
-            margin-bottom: 20px;
+            font-size: 36px;
+            margin-bottom: 40px;
         }
-        form {
+        .button-container {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            gap: 20px;
         }
-        input[type="email"] {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px;
+        .button {
+            padding: 15px 25px;
+            font-size: 16px;
             color: #000;
             background-color: #fff;
             border: none;
@@ -45,8 +41,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        button:hover {
+        .button:hover {
             background-color: #ccc;
+        }
+        #email-input, #bid-input, #purchase-input {
+            display: none;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -55,32 +55,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FZDW24X"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    
-    <h1>Sign Up for Our Newsletter</h1>
-    <form id="email-form">
-        <input type="email" id="email" placeholder="Enter your email" required>
-        <button type="submit">Submit</button>
-    </form>
+    <h1>Welcome to Our Website</h1>
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='not_found.html'">Search</button>
+        <button class="button" onclick="document.getElementById('email-input').style.display='block';">Your Email</button>
+        <button class="button" onclick="document.getElementById('email-input').style.display='block';">Sign Up</button>
+        <button class="button" onclick="window.location.href='about_us.html'">About Us</button>
+        <button class="button" onclick="window.location.href='browse.html'">Browse</button>
+        <button class="button" onclick="document.getElementById('bid-input').style.display='block';">Bid</button>
+        <button class="button" onclick="document.getElementById('purchase-input').style.display='block';">Purchase</button>
+        <button class="button" onclick="window.location.href='customer_service.html'">Customer Service Number</button>
+    </div>
 
-    <div id="thank-you-message" style="display:none; margin-top: 20px;">
-        <h2>Thank you for signing up!</h2>
+    <div id="email-input" style="display:none;">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button class="button" onclick="submitEmail()">Submit Email</button>
+    </div>
+
+    <div id="bid-input">
+        <input type="number" placeholder="Enter your bid number" required>
+        <button class="button" onclick="submitBid()">Submit Bid</button>
+    </div>
+
+    <div id="purchase-input">
+        <input type="number" placeholder="Enter purchase number" required>
+        <button class="button" onclick="submitPurchase()">Submit Purchase</button>
     </div>
 
     <script>
-        document.getElementById('email-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+        function submitEmail() {
+            const email = document.getElementById('email').value;
+            if (email) {
+                // Push email to the dataLayer for tracking in GTM
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'emailSubmission',
+                    'email': email
+                });
+                alert("Thank you for submitting your email!");
+                document.getElementById('email-input').style.display = 'none';
+            } else {
+                alert("Please enter a valid email address.");
+            }
+        }
 
-            // Track form submission with GTM
-            dataLayer.push({
-                'event': 'formSubmission',
-                'formId': 'emailForm',
-                'email': document.getElementById('email').value
-            });
+        function submitBid() {
+            document.getElementById('bid-input').style.display = 'none';
+            window.location.href = 'great_bid.html'; // Update with your bid confirmation page
+        }
 
-            // Hide the form and show thank you message
-            document.getElementById('email-form').style.display = 'none';
-            document.getElementById('thank-you-message').style.display = 'block';
-        });
+        function submitPurchase() {
+            document.getElementById('purchase-input').style.display = 'none';
+            window.location.href = 'great_purchase.html'; // Update with your purchase confirmation page
+        }
     </script>
 </body>
 </html>
