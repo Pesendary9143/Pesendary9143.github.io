@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .button:hover {
             background-color: #ccc;
         }
-        #bid-input {
+        #bid-input, #purchase-input {
             display: none;
             margin-top: 20px;
         }
@@ -62,6 +62,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="button" onclick="window.location.href='about_us.html'">About Us</button>
         <button class="button" onclick="window.location.href='browse.html'">Browse</button>
         <button class="button" onclick="document.getElementById('bid-input').style.display='block';">Bid</button>
+        <button class="button" onclick="document.getElementById('purchase-input').style.display='block';">Purchase</button>
         <button class="button" onclick="window.location.href='customer_service.html'">Customer Service Number</button>
     </div>
 
@@ -75,6 +76,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="button" onclick="submitBid()">Submit Bid</button>
     </div>
 
+    <div id="purchase-input">
+        <input type="number" placeholder="Enter purchase number" required>
+        <button class="button" onclick="submitPurchase()">Submit Purchase</button>
+    </div>
+
     <script>
         function signUp() {
             document.getElementById('email-input').style.display = 'none';
@@ -85,7 +91,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             document.getElementById('bid-input').style.display = 'none';
             window.location.href = 'thank_you_bid.html';
         }
+
+        function submitPurchase() {
+            document.getElementById('purchase-input').style.display = 'none';
+            window.location.href = 'thank_you_purchase.html';
+        }
     </script>
-    
 </body>
 </html>
