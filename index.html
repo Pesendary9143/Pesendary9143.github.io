@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .button:hover {
             background-color: #ccc;
         }
-        #bid-input, #purchase-input {
+        #email-input, #bid-input, #purchase-input {
             display: none;
             margin-top: 20px;
         }
@@ -58,7 +58,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>Welcome to Our Website</h1>
     <div class="button-container">
         <button class="button" onclick="window.location.href='not_found.html'">Search</button>
-        <button class="button" onclick="document.getElementById('email-input').style.display='block';">Sign Up</button>
+        <button class="button" onclick="document.getElementById('email-input').style.display='block';">Your Email</button>
         <button class="button" onclick="window.location.href='about_us.html'">About Us</button>
         <button class="button" onclick="window.location.href='browse.html'">Browse</button>
         <button class="button" onclick="document.getElementById('bid-input').style.display='block';">Bid</button>
@@ -66,9 +66,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="button" onclick="window.location.href='customer_service.html'">Customer Service Number</button>
     </div>
 
-    <div id="email-input" style="display:none; margin-top: 20px;">
-        <input type="email" placeholder="Enter your email" required>
-        <button class="button" onclick="signUp()">Submit</button>
+    <div id="email-input" style="display:none;">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button class="button" onclick="submitEmail()">Submit Email</button>
     </div>
 
     <div id="bid-input">
@@ -82,21 +82,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <script>
-        function signUp() {
-            document.getElementById('email-input').style.display = 'none';
-            window.location.href = 'thank_you.html';
+        function submitEmail() {
+            const email = document.getElementById('email').value;
+            if (email) {
+                // Push email to the dataLayer for tracking in GTM
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'emailSubmission',
+                    'email': email
+                });
+                alert("Thank you for submitting your email!");
+                document.getElementById('email-input').style.display = 'none';
+            } else {
+                alert("Please enter a valid email address.");
+            }
         }
 
         function submitBid() {
             document.getElementById('bid-input').style.display = 'none';
-            window.location.href = 'thank_you_bid.html';
+            window.location.href = 'great_bid.html'; // Update with your bid confirmation page
         }
 
         function submitPurchase() {
             document.getElementById('purchase-input').style.display = 'none';
-            window.location.href = 'great_purchase.html'; // Updated to new file name
+            window.location.href = 'great_purchase.html'; // Update with your purchase confirmation page
         }
     </script>
-    
 </body>
 </html>
